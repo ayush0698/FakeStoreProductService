@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter
-@Setter
+@Setter   //or we can use @data annotation to get getter and setter together.
 public class Product {
     private Long id;
     private String title;
