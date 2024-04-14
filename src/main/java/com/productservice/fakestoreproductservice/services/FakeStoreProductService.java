@@ -33,6 +33,8 @@ public class FakeStoreProductService implements ProductService{
         return product;
     }
     public Product getProductById(Long id){
+        //int x = 1/0;    //only for checking exception
+
         //call fakestore API here to get the product with given .
         //RestTemplate restTemplate= new RestTemplate();
         // we are not creating here bcoz we need this RestTemplete object multiple time,
