@@ -1,11 +1,14 @@
 package com.productservice.fakestoreproductservice.controllers;
 
+import com.productservice.fakestoreproductservice.exceptions.ProductNotFoundException;
 import com.productservice.fakestoreproductservice.models.Product;
 import com.productservice.fakestoreproductservice.services.ProductService;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,17 +18,16 @@ import java.util.List;
 
 public class ProductController {
     private ProductService productService;
-    ProductController(ProductService productService){
+    public ProductController(ProductService productService){
         this.productService= productService;
     }
     //localhost:8080/products/1
     @GetMapping("/{id}")
-    public ResponseEntity<Product> getProductById(@PathVariable("id") Long id){
+    public ResponseEntity<Product> getProductById(@PathVariable("id") Long id) throws ProductNotFoundException {
         Product product= productService.getProductById(id);
         ResponseEntity<Product> responseEntity;
         if(product==null) { // if product is not found, send status code 400:BAD_REQUEST
-            responseEntity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-            return responseEntity;
+        //    throw new ProductNotFoundException(id+ "Product with id "+ id+ " not found.");
         }
         //return new ResponseEntity<>(product, HttpStatus.OK);
         responseEntity = new ResponseEntity<>(product, HttpStatus.OK);
@@ -40,6 +42,12 @@ public class ProductController {
     public Product replaceProduct(@PathVariable("id") Long id, @RequestBody Product product){
         return productService.replaceProduct(id, product);
     }
+
+    @ExceptionHandler(FileNotFoundException.class)
+    public ResponseEntity<Void> handleSomeException() {
+        return null;
+    }
+
 
 
     //createProduct
