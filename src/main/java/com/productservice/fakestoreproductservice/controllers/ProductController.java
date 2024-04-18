@@ -3,6 +3,7 @@ package com.productservice.fakestoreproductservice.controllers;
 import com.productservice.fakestoreproductservice.exceptions.ProductNotFoundException;
 import com.productservice.fakestoreproductservice.models.Product;
 import com.productservice.fakestoreproductservice.services.ProductService;
+import com.productservice.fakestoreproductservice.services.SelfProductService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,7 @@ import java.util.List;
 
 public class ProductController {
     private ProductService productService;
-    public ProductController(ProductService productService){
+    public ProductController(@Qualifier("SelfProductService") ProductService productService){
         this.productService= productService;
     }
     //localhost:8080/products/1

@@ -12,7 +12,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
-@Service  // here we can use @repository or @component also
+@Service("FakeStoreProductService")  // here we can use @repository or @component also
 public class FakeStoreProductService implements ProductService{
     private RestTemplate restTemplate;
     FakeStoreProductService(RestTemplate restTemplate){
@@ -58,6 +58,11 @@ public class FakeStoreProductService implements ProductService{
         return products;
     }
 
+    @Override
+    public Product updateProduct(Long id, Product product) {
+        return null;
+    }
+
     public Product replaceProduct(Long id, Product product){
         FakeStoreProductDto fakeStoreProductDto= new FakeStoreProductDto();
         fakeStoreProductDto.setTitle(product.getTitle());
@@ -71,5 +76,16 @@ public class FakeStoreProductService implements ProductService{
         return convertFakeStoreDtoToProduct(response);
 
     }
+
+    @Override
+    public Product createProduct(Product product) {
+        return null;
+    }
+
+    @Override
+    public void deleteProduct() {
+
+    }
+
 
 }
