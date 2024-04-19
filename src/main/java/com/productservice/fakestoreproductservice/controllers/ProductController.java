@@ -49,10 +49,13 @@ public class ProductController {
         return null;
     }
 
-
-
     //createProduct
     //deleteProduct
     //updateProduct
     //replaceProduct
+
+    @PostMapping
+    public Product createProduct(@RequestBody Product product){   //can use dto also here
+        return productService.createProduct(product);
+    }
 }
