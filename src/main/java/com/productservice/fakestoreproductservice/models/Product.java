@@ -1,5 +1,6 @@
 package com.productservice.fakestoreproductservice.models;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
@@ -16,6 +17,8 @@ public class Product extends BaseModel{
     private double price;
     private String image;
     @ManyToOne
+    //@ManyToOne(cascade = CascadeType.ALL)
+    //@ManyToOne(cascade = CascadeType.PERSIST)  (along with product automatically category also saved , no need to write extra code)
     private Category category;
 }
 
