@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service("SelfProductService")
-//@Primary     // we can use qualifer annotaton also which bean we want to used
+@Primary     // we can use qualifer annotaton also which bean we want to used
 public class SelfProductService implements  ProductService{
     private ProductRepository productRepository;
     private CategoryRepository categoryRepository;
